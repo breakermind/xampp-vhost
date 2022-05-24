@@ -2,7 +2,7 @@
 Xampp virtualhost exmple
 
 ## Add local domain
-C:/Windows/System32/drivers/etc/hosts
+C:\Windows\System32\drivers\etc\hosts
 ```sh
 # app.xx
 127.0.0.10 app.xx www.app.xx api.app.xx
