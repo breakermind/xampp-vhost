@@ -12,20 +12,35 @@ C:\Windows\System32\drivers\etc\hosts
 ```
 
 ## Virtualhost laravel
-```conf
-<VirtualHost 127.0.0.10:80>
+```sh
+<VirtualHost 127.0.0.10:80>        
+    ServerName www.app.xx   
+    
+    # Redirect to https non-www
+    Redirect permanent / https://app.xx/
+    
+    # Redirect to https non-www
+    #RedirectMatch permanent ^/(.*)$ https://app.xx/$1
+
+    # Redirect to https
+    #RewriteEngine On
+    #RewriteCond %{HTTPS} off
+    #RewriteRule (.*) https://%{SERVER_NAME}$1 [R,L]
+</VirtualHost>
+
+<VirtualHost 127.0.0.10:80>    
+    ServerName app.xx    
+    
     DocumentRoot "D:/www/app.xx/public/"
     DirectoryIndex index.php
-    ServerName app.xx
-    ServerAlias www.app.xx
 
     ErrorLog "D:/www/app.xx/storage/logs/app.xx.error.log"
     CustomLog "D:/www/app.xx/storage/logs/app.xx.access.log" common
 
-    # Redirect ssl
+    # Redirect to https
     #RewriteEngine On
     #RewriteCond %{HTTPS} off
-    #RewriteRule (.*) https://%{SERVER_NAME}$1 [R,L] 
+    #RewriteRule (.*) https://%{SERVER_NAME}$1 [R,L]
 
     <Directory "D:/www/app.xx/public">
         Options Indexes FollowSymLinks MultiViews
@@ -38,9 +53,9 @@ C:\Windows\System32\drivers\etc\hosts
 
 <VirtualHost 127.0.0.10:443>
     DocumentRoot D:/www/app.xx/public
-    DirectoryIndex index.php
     ServerName app.xx
-    ServerAlias www.app.xx
+    
+    Protocols h2 http/1.1
     
     SSLEngine on
     SSLCertificateFile "conf/ssl.crt/server.crt"
