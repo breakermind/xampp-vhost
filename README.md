@@ -38,6 +38,7 @@ C:\Windows\System32\drivers\etc\hosts
 
 <VirtualHost 127.0.0.10:443>
     DocumentRoot D:/www/app.xx/public
+    DirectoryIndex index.php
     ServerName app.xx
     ServerAlias www.app.xx
     
