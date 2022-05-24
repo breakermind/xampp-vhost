@@ -11,7 +11,7 @@ C:\Windows\System32\drivers\etc\hosts
 # 127.0.0.11 test.xx www.test.xx api.test.xx
 ```
 
-## Virtualhost
+## Virtualhost laravel
 ```conf
 <VirtualHost 127.0.0.10:80>
     DocumentRoot "D:/www/app.xx/public/"
